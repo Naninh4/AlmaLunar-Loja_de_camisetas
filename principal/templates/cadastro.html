@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block conteudo %}
+
+<h1>Criando formulário django</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p}}
+</form>
+<button type="submit"> salvar </button>
+
+{% endblock conteudo %}
+    
