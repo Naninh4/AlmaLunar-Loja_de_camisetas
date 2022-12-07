@@ -14,17 +14,21 @@ body{
 .nav-link{
     color: white !important;
 }
-.nav-item:hover{
+/* .nav-item:hover{
     border-radius: 30px;
     box-shadow: 0 0 1em rgb(156, 37, 224);
+} */
+nav{
+    display: flex;
+    justify-content: space-around;
 }
 
-.btn.btn-outline-success.my-2.my-sm-0:hover{
+/* .btn.btn-outline-success.my-2.my-sm-0:hover{
     background-color: black !important;
     box-shadow: 0 0 1em rgb(156, 37, 224) !important;
     border-radius: 30px !important;
 
-}
+} */
 
 .icons_cabe{
     display: flex;
