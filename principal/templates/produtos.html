@@ -2,7 +2,7 @@
 {% block conteudo %}
 <section style="display: flex;margin-bottom: 30px;" class="container-fluid">
     <div class="row row-cols-sm-2  row-cols-lg-4 row-cols-md-3">
-        {% for produto in produtos %}
+
 
         <style>
             .col{
@@ -25,6 +25,8 @@
             }
 
         </style>
+        {% for produto in produtos %}
+
         <div class="col">
             <img src="/media/{{produto.imagem_produto}}" class="card-img-top" alt="Imagem de capa do card">
             <div style=" margin: 2px; text-align: center ; font-size:14px;">
