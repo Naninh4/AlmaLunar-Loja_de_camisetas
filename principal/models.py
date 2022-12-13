@@ -20,3 +20,4 @@ class Produto(models.Model):
 class Cliente(models.Model):
     nome_cliente  = models.CharField (max_length = 100)
     email_cliente = models.EmailField()
+    senha_cliente = models.CharField()

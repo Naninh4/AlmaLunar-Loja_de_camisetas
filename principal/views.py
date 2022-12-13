@@ -1,5 +1,5 @@
 from multiprocessing import context
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from principal.forms import Cliente_form
 from principal.models import *
 
@@ -30,11 +30,16 @@ def detalhes(request, id):
 
 def cliente(request):
     #set infromações do cliente
-    if request.method == 'POST':  # se o formulário for do tipo "post" ou seja, ele está sendo enviado como requisição
-        form = Cliente_form(request.POST)
-        form.save()  # salvando informações no banco de dados
-        form = Cliente_form()  # CRIANDO UM FORMULÁRIO VAZIO
-    else:
-        form = Cliente_form
+    form = Cliente_form(request.POST or None)
 
-    return render(request, 'cadastro.html', {'form': form})
+    if request.method == "POST":
+        form =Cliente_form(request.POST) #Armazenando o formulário criado a uma lista
+        print(request.POST)
+        if form.is_valid():
+           form.save()
+        else:
+            form = Cliente_form()
+        
+        form = Cliente_form()
+
+    return render(request, 'Login_Cadastro.html', {'form': form })

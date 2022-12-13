@@ -4,7 +4,7 @@ body{
     background-position: center;
     margin: 0;
     align-items: center;
-    font-family: "DM Sans", Arial, sans-serif !important;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-weight: 700;
     color: #4f1a58;
     letter-spacing: 0;
@@ -43,3 +43,22 @@ main{
 
 
 /* css lista de produtos */
+
+
+/* tela sobre nos */
+
+.quem_somos{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.desenvolvedoras.container-fluid{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom: 100px;
+    
+}
+
+
