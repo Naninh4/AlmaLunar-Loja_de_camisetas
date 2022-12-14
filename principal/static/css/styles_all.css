@@ -4,37 +4,28 @@ body{
     background-position: center;
     margin: 0;
     align-items: center;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 700;
     color: #4f1a58;
     letter-spacing: 0;
     line-height: 34px;
 
 }
+
+
+
+.form-control.mr-sm-2{
+    background-color: black !important;
+    border: 0px !important;
+    border-bottom:  2px solid #4f1a58 !important;
+    float: right !important ;
+}
 .nav-link{
     color: white !important;
 }
-/* .nav-item:hover{
-    border-radius: 30px;
-    box-shadow: 0 0 1em rgb(156, 37, 224);
-} */
-nav{
-    display: flex;
-    justify-content: space-around;
-}
-
-/* .btn.btn-outline-success.my-2.my-sm-0:hover{
+.navbar.navbar-expand-lg{
     background-color: black !important;
-    box-shadow: 0 0 1em rgb(156, 37, 224) !important;
-    border-radius: 30px !important;
-
-} */
-
-.icons_cabe{
-    display: flex;
-    justify-content: end;
-    margin-bottom: 10px;
-
+    
 }
 main{
     display: flex;
