@@ -16,6 +16,8 @@ def lista_produtos(request):
     context = {'produtos': lista}
     return render(request, "produtos.html", context)
 
+    
+
 
 def quemsomos(request):
     return render(request, "quemsomos.html")
@@ -43,3 +45,24 @@ def cliente(request):
         form = Cliente_form()
 
     return render(request, 'Login_Cadastro.html', {'form': form })
+
+
+
+def pesquisa(request):
+   
+
+    lista = Produto.objects.order_by("-id")
+
+    if 'categ' in request.GET:
+        lista = lista.filter(categoria_produto_id=int(request.GET['categ']))
+    if 'pesq' in request.GET:
+         lista = lista.filter(nome_produto__icontains=request.GET['pesq'])
+
+
+   
+    print(lista)
+
+    return render(request,'produtos.html',{
+        'listap':lista,
+    })
+    

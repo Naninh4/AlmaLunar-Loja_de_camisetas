@@ -13,6 +13,7 @@ urlpatterns = [
     path('quemsomos/',quemsomos,name="quemsomos"),
     path('detalhes',detalhes,name="detalhes"),
     path('detalhes/<int:id>',detalhes,name="detalhes"),
+    path('pagcategoria', pesquisa, name="pagcategoria"),
     path('form/',cliente, name="L_G")
 
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
