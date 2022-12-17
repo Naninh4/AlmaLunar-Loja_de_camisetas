@@ -62,7 +62,7 @@ def pesquisa(request):
    
     print(lista)
 
-    return render(request,'produtos.html',{
-        'listap':lista,
+    return render(request,'pagcategoria.html',{
+        'produtos':lista,
     })
     
