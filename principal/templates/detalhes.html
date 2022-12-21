@@ -2,93 +2,112 @@
 {% block conteudo %}
 
 <style>
-    .container-lg {
-        width: 90%;
-        margin-bottom: 50px;
-        margin-top: 50px;
-    }
+  .container-lg {
+    width: 90%;
+    margin-bottom: 50px;
+    margin-top: 50px;
+  }
 
-    .admake-product-name {
-        font-family: "DM Sans", Arial, sans-serif;
-        font-weight: 700;
-        font-size: 28px;
-        color: #aa06ca;
-        letter-spacing: 0;
-        line-height: 34px;
-    
-    }
-    .product-intro__size-radio-inner {
+  .admake-product-name {
+    font-weight: 700;
+    font-size: 28px;
+    color: #aa06ca;
+    letter-spacing: 0;
+    line-height: 34px;
+
+  }
+
+  .product-intro__size-radio-inner {
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 14px;
-}
-
+  }
 </style>
 </div>
 <section class="container-fluid">
-    <div class="row justify-content-center" style="margin-bottom:20px ;">
-        <div class="col-4">
-            <img class="img-fluid" src="/static/img/detalhe.png" alt="detalherosaneon">
-        </div>
-        <div class="col-4">
-            <img class="img-fluid" src="/static/img/detalheroxo.png" alt="detalheroxoneon">
-        </div>
-</section>
-<section class="container-lg mb-4">
-        <div class="row align-content-center">
-        <div style="padding: 0%; display: flex; justify-content: center;" class="col-6">
-            <img style="width: 30rem; border-radius: 40px;" class="img-fluid" src="/media/{{produto.imagem_produto}}"
-                alt="detalhes{{produto.nome_produto}}}">
-        </div>
-        <div style="text-align:left; margin-top: 10px; padding: 0%; color: white; font-size: 20px;" class="col-6">
-            <h2 class="admake-product-name">{{produto.nome_produto}}</h2>
-            <h5>Descrição</h5>
-            <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; text-align: justify;">{{produto.descricao_produto}}</p>
-            <h4> <svg style="color: rgb(255, 0, 255);margin-right:5px;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"/>
-                <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"/>
-                <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z"/>
-                <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z"/>
-              </svg>R${{produto.valor_produto}}</h4>
-              <span style="color: yellow ;"><svg style="margin-right:10px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
-    <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
-  </svg>{{produto.categoria.nome_categoria}}</span>
-<style>
-.estrelas input[type=radio] {
-  display: none;
-}
-.estrelas label i.fa{
-  font-size: 1.5em
-}
-.estrelas label i.fa:before {
-  content:'\f005';
-  color: #FC0;
-}
-.estrelas input[type=radio]:checked ~ label i.fa:before {
-  color: #CCC;
-}
-</style>
-<div class="estrelas">
-  <input type="radio" id="cm_star-empty" name="fb" value="" checked/>
-  <label for="cm_star-1"><i class="fa"></i></label>
-  <input type="radio" id="cm_star-1" name="fb" value="1"/>
-  <label for="cm_star-2"><i class="fa"></i></label>
-  <input type="radio" id="cm_star-2" name="fb" value="2"/>
-  <label for="cm_star-3"><i class="fa"></i></label>
-  <input type="radio" id="cm_star-3" name="fb" value="3"/>
-  <label for="cm_star-4"><i class="fa"></i></label>
-  <input type="radio" id="cm_star-4" name="fb" value="4"/>
-  <label for="cm_star-5"><i class="fa"></i></label>
-  <input type="radio" id="cm_star-5" name="fb" value="5"/>
-</div>
-  <a href="{% url 'produtos' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
-  </svg> voltar </a>
-  
-        </div>
+  <div class="row justify-content-center" style="margin-bottom:20px ;">
+    <div class="col-4">
+      <img class="img-fluid" src="/static/img/detalhe.png" alt="detalherosaneon">
+    </div>
+    <div class="col-4">
+      <img class="img-fluid" src="/static/img/detalheroxo.png" alt="detalheroxoneon">
     </div>
 </section>
+<section class="container-lg mb-4">
+  <div class="row align-content-center">
+    <div style="padding: 0%; display: flex; justify-content: center;" class="col-6">
+      <img style="width: 30rem; border-radius: 40px;" class="img-fluid" src="/media/{{produto.imagem_produto}}"
+        alt="detalhes{{produto.nome_produto}}}">
+    </div>
+    <div style="text-align:left; margin-top: 10px; padding: 0%; color: white; font-size: 20px;" class="col-6">
+      <h2 class="admake-product-name">{{produto.nome_produto}}</h2>
+      <h5>Descrição</h5>
+      <p style="text-align: justify;">
+        {{produto.descricao_produto}}</p>
+      <h4> <svg style="color: rgb(255, 0, 255);margin-right:5px;" xmlns="http://www.w3.org/2000/svg" width="20"
+          height="20" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z" />
+          <path
+            d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z" />
+          <path
+            d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z" />
+          <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" />
+        </svg>R${{produto.valor_produto}}</h4>
+      <span style="color: yellow ;"><svg style="margin-right:10px;" xmlns="http://www.w3.org/2000/svg" width="16"
+          height="16" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+          <path
+            d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
+        </svg>{{produto.categoria_produto}}</span>
 
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+      <div class="estrelas">
+        <input type="radio" id="cm_star-empty" name="fb" value="" checked />
+        <label for="cm_star-1"><i class="fa"></i></label>
+        <input type="radio" id="cm_star-1" name="fb" value="1" />
+        <label for="cm_star-2"><i class="fa"></i></label>
+        <input type="radio" id="cm_star-2" name="fb" value="2" />
+        <label for="cm_star-3"><i class="fa"></i></label>
+        <input type="radio" id="cm_star-3" name="fb" value="3" />
+        <label for="cm_star-4"><i class="fa"></i></label>
+        <input type="radio" id="cm_star-4" name="fb" value="4" />
+        <label for="cm_star-5"><i class="fa"></i></label>
+        <input type="radio" id="cm_star-5" name="fb" value="5" />
+      </div>
+      <a href="{% url 'pedido' produto.id %}">
+      <button class="btn btn-primary " > Comprar </button>
+    </a>
+
+      <a href="{% url 'produtos' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+        </svg> voltar </a>
+
+    </div>
+  </div>
+</section>
+<style>
+  body {
+    text-align: center;
+  }
+
+  .estrelas input[type=radio] {
+    display: none;
+  }
+
+  .estrelas label i.fa {
+    font-size: 0.8em
+  }
+
+  .estrelas label i.fa:before {
+    content: '\f005';
+    color: #FC0;
+  }
+
+  .estrelas input[type=radio]:checked~label i.fa:before {
+    color: #CCC;
+  }
+</style>
 {% endblock conteudo %}

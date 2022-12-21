@@ -1,18 +1,22 @@
 body{
-    background: linear-gradient( rgb(0, 0, 0), black, rgb(59, 9, 105)) 100% no-repeat;
-    background-size:auto;
-    background-position: center;
+    background: rgb(99,0,153);
+    background: linear-gradient(0deg, rgba(99,0,153,1) 0%, rgba(0,0,0,1) 72%, rgba(0,0,0,1) 89%);
+    height: 100%;
     margin: 0;
-    align-items: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
     font-family: "Montserrat", sans-serif;
-    font-weight: 700;
     color: #4f1a58;
-    letter-spacing: 0;
-    line-height: 34px;
-
+    padding: 0% !important;
+}
+*{
+    font-family: "Montserrat", sans-serif;   
 }
 
-
+html1{
+    height: 100%;
+}
 
 .form-control.mr-sm-2{
     background-color: black !important;
@@ -23,10 +27,8 @@ body{
 .nav-link{
     color: white !important;
 }
-.navbar.navbar-expand-lg{
-    background-color: black !important;
-    
-}
+
+
 main{
     display: flex;
     margin: auto;

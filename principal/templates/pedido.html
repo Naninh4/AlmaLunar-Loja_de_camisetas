@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+
+<style>
+  .card.pag {
+    margin: 10px !important;
+    color: black;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0 0 3rem rgba(162, 0, 255, 0.247) !important;
+  }
+
+  #total {
+    font-size: 30px;
+  }
+
+  #confirmar{
+    background-color: blueviolet;
+    text-align: center;
+  }
+
+  .card-img-top {
+    border-radius: 30px;
+  }
+
+  .row {
+    justify-content: space-around;
+  }
+</style>
+<h1>Verifique seu pedido:</h1>
+<section>
+  <div class="row row-cols-sm-2  row-cols-lg-4 row-cols-md-3">
+
+    <div class="col">
+      <div class="card pag" style="width: 30rem;">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2"> <strong>Endereço de entrega:</strong></h6>
+          {% for adress in adress %}
+          <p class="card-text"> Rua {{ endereco.rua }}, nº {{ endereco.numero }}<br>
+            Bairro {{ endereco.bairro }}<br>
+            {{ endereco.cidade }}, {{ endereco.estado }} <br>
+            {{ endereco.pais }}
+            <strong>Total do pedido:</strong> R${{ produto. }}
+          </p>
+        </div>
+      </div>
+
+      <div class="card pag" style="width: 30rem;">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2"> <strong>Entrega:</strong></h6>
+          <img  style="width: 13em;" src="/media/{{produto.imagem_produto}}" class="card-img" alt="Imagem de capa do card">
+          <p class="card-text">{{ produto.nome_produto }}<br>
+            R${{ produto.valor_produto }}<br>
+            Quantidade:{{ produto.quantidade }}</p> <!-- adicionar "quantidade" nos model de produtos -->
+        </div>
+      </div>
+    </div>
+
+    <div class="card pag" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-subtitle mb-2"> <strong>Pedido:</strong></h6>
+          <p class="card-text"> Produtos: R${{ produto.valor_produto }} <br>
+            Frete: R${{ produto. }} <br> <br>
+            <strong id="total">Total do pedido: R${{ produto. }}</strong>
+          </p>
+          <a href="{% url 'pagamento' %}" id="confirmar" class="btn btn-primary">Confirmar pedido</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock conteudo %}

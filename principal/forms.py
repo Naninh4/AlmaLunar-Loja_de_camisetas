@@ -1,8 +1,10 @@
 from socket import fromshare
 from django import forms
-from principal.models import Cliente
+from principal.models import *
 
-class Cliente_form(forms.ModelForm):
+
+class Adress_form(forms.ModelForm):
+    
     class Meta:
-        model = Cliente
-        fields = '__all__' # selecionando todos os campos do model
+        model: Adress
+        fields: '__all__'

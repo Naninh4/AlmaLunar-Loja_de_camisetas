@@ -1,31 +1,31 @@
 {% extends 'base.html' %}
 {% block 'titulo' %}produtos{% endblock %}
 {% block conteudo %}
-<section style="display: flex;margin-bottom: 30px;" class="container-fluid">
+<style>
+    .col{
+        margin: 10px !important;
+        color: white;
+        padding: 10px;
+    }
+
+    .col:hover {
+        box-shadow: 0 0 1rem rgba(162, 0, 255, 0.247) !important;
+        border-radius: 30px;
+    }
+
+    .card-img-top {
+        border-radius: 30px;
+    }
+
+    .row {
+        justify-content: space-around;
+    }
+
+</style>
+<section class="container-fluid d-grid">
     <div class="row row-cols-sm-2  row-cols-lg-4 row-cols-md-3">
 
-
-        <style>
-            .col{
-                margin: 10px !important;
-                color: white;
-                padding: 10px;
-            }
-
-            .col:hover {
-                box-shadow: 0 0 1rem rgba(162, 0, 255, 0.247) !important;
-                border-radius: 30px;
-            }
-
-            .card-img-top {
-                border-radius: 30px;
-            }
-
-            .row {
-                justify-content: space-around;
-            }
-
-        </style>
+        
         {% for produto in produtos %}
 
         <div class="col">

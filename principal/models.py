@@ -1,5 +1,6 @@
 from distutils.command.upload import upload
 from django.db import models
+from django.contrib.auth.models import User
 # Create your models here.
 class Categoria(models.Model):
     nome_categoria = models.CharField(max_length=20)
@@ -14,20 +15,14 @@ class Produto(models.Model):
     imagem_produto = models.ImageField(upload_to='produtos/',blank=True,null=True,max_length=250)
     descricao_produto = models.TextField()
     categoria_produto = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    # qnt_disponivel = models.IntegerField()
+    qnt_disponivel = models.IntegerField(default=True)
 
     def __str__(self):
         return self.nome_produto
 
 
 
-class Cliente(models.Model):
-    nome_cliente  = models.CharField(max_length=100)
-    email_cliente = models.EmailField()
-    senha_cliente = models.CharField(max_length=8,blank=False)
-
-
-class endereco (models.Model):
+class Adress (models.Model):
     pais = models.CharField(max_length=200)
     estado = models.CharField(max_length=200)
     cidade = models.CharField(max_length=200)
@@ -37,4 +32,7 @@ class endereco (models.Model):
     
     def __str__(self):
         return "Rua: {},N° {}, {}, {}, {}, {}".format(self.rua, self.numero, self.bairro, self.cidade, self.estado, self.pais)
+# class pedido (models.Model):
+#     id_cliente = models.ForeignKey(User, on_delete= models.CASCADE)
+#     id_adress = models.ForeignKey(Adress, on_delete=models.CASCADE)
     
