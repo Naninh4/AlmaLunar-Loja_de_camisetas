@@ -5,7 +5,7 @@ WORKDIR /home/app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN pip install --upgrad pip
+RUN pip install --upgrade pip
 
 COPY ./requeriments.txt .
 

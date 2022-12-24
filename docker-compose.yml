@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  Lunar:
+   build:
+     context: .
+   command: gunicorn almalunarPI.wsgi:application --bind 0.0.0.0:8000
+   volumes:
+    - static_volume:/home/app/static
+   expose:
+    - 8000
+  nginx:
+   build: ./compose/nginx
+   volumes:
+    - static_volume:/home/app/static
+   ports:
+    - 80:80
+   depends_on:
+    - Lunar
+volumes:
+  static_volume:

@@ -1,6 +1,8 @@
 from distutils.command.upload import upload
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser, User
+from django.conf import settings
+import decimal
 # Create your models here.
 class Categoria(models.Model):
     nome_categoria = models.CharField(max_length=20)
@@ -8,21 +10,19 @@ class Categoria(models.Model):
     def __str__(self):
         return self.nome_categoria
 
-
 class Produto(models.Model):
     nome_produto = models.CharField(max_length=100)
     valor_produto = models.DecimalField('Preço do Produto',max_digits=8,decimal_places=2)
     imagem_produto = models.ImageField(upload_to='produtos/',blank=True,null=True,max_length=250)
     descricao_produto = models.TextField()
     categoria_produto = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    qnt_disponivel = models.IntegerField(default=True)
 
     def __str__(self):
         return self.nome_produto
 
 
-
 class Adress (models.Model):
+    id_cliente = models.ForeignKey(User, on_delete=models.CASCADE)
     pais = models.CharField(max_length=200)
     estado = models.CharField(max_length=200)
     cidade = models.CharField(max_length=200)
@@ -32,7 +32,14 @@ class Adress (models.Model):
     
     def __str__(self):
         return "Rua: {},N° {}, {}, {}, {}, {}".format(self.rua, self.numero, self.bairro, self.cidade, self.estado, self.pais)
-# class pedido (models.Model):
-#     id_cliente = models.ForeignKey(User, on_delete= models.CASCADE)
-#     id_adress = models.ForeignKey(Adress, on_delete=models.CASCADE)
-    
+class Pedido (models.Model):
+    id_cliente = models.IntegerField()
+    nome_produto = models.CharField(max_length=250 )
+    valor_produto = models.FloatField(default=0.0)
+    quantidade = models.IntegerField(default=0)
+    valor_total = models.FloatField(default=0.0)
+
+    def save(self,*args, **kwargs):
+        self.valor_total = self.valor_produto * decimal.Decimal(self.quantidade)
+        # self.id_cliente = User.get_username
+        super(Pedido, self).save(*args, **kwargs)

@@ -75,9 +75,18 @@
         <label for="cm_star-5"><i class="fa"></i></label>
         <input type="radio" id="cm_star-5" name="fb" value="5" />
       </div>
-      <a href="{% url 'pedido' produto.id %}">
-      <button class="btn btn-primary " > Comprar </button>
-    </a>
+      <form action="{% url 'carrinho' produto.id %}" method="post" class="form-group d-flex">
+        {% csrf_token %}
+        <div class="col-1">
+          <input type="number"  value="1" class="form-control bg-opacity-10" style="width: 50px;" name="quantidade">
+          </div>
+      
+            <button class="btn btn-primary" type="submit"> Adicionar ao carrinho </button>
+      </form>
+      <br>
+      <button class="btn btn-primary "> Comprar </button>
+      
+      <br>
 
       <a href="{% url 'produtos' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
           class="bi bi-arrow-return-left" viewBox="0 0 16 16">

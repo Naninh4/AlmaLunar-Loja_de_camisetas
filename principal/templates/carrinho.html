@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block conteudo %}
+    {% for item in pedidos %}
+    <p>{{item.nome_produto}}</p>
+    <p>{{item.valor_produto}}</p>
+    <p>{{item.nome_produto}}</p>
+    <p>{{item.quantidade}}</p>
+    <p>{{item.valor_total}}</p>
+    {% endfor %}
+
+{% endblock %}

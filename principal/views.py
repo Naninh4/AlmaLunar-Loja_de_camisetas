@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.views.decorators.http import require_POST
+from django.views.generic.list import ListView
+
 # Create your views here.
 
 @require_POST
@@ -30,21 +32,24 @@ def cadastrar_usuario(request):
 
         return render(request, 'cadastro.html')
 
+@login_required
+
+class Carrinho(ListView):
+    model = Pedido
+    template_name = "carrinho.html"
 
 def view_form_cadastro(request):
     return render(request, "cadastro.html")
 
-@login_required
 def index(request):
     produtos = Produto.objects.all()
     return render(request, "index.html", {'produtos': produtos})
 
 
-def lista_produtos(request):
+class lista_produtos(ListView):
     #get produtos
-    lista = Produto.objects.all()
-    context = {'produtos': lista}
-    return render(request, "produtos.html", context)
+    model = Produto
+    template_name = 'produtos.html'
 
 @login_required
 def perfil_user_view(request):
@@ -55,16 +60,23 @@ def perfil_user_view(request):
 def quemsomos(request):
     return render(request, "quemsomos.html")
 
-def tela_pedido (request):
-    return render( request, 'pedido.html')
-    
+
+
+
+# def cal(request):
+#     quantidade = request.POST['quantidade']
+#     context = quantidade * Produto.valor_produto
+#     return render(request, 'pedido.html',context)
+
+@login_required
 def tela_pagamento (request):
     return render( request, 'pagamento.html')
 
 def detalhes(request, id):
     #get detalhes do produto
-    produto = Produto.objects.get(id=id)
+    produto = Produto.objects.get(pk=id)
     context = {'produto': produto}
+
     return render(request, "detalhes.html", context)
 
 
@@ -100,7 +112,32 @@ def pesquisa(request):
     return render(request,'pagcategoria.html',{
         'produtos':lista,
     })
+    
 @login_required
 def logout_aplicacao(request):
     logout(request)
     return redirect('login')
+
+@login_required
+def Comprar(request):
+    pedidos = Pedido.objects.filter(id_cliente = request.user )
+    return render(request, 'carrinho.html', {'pedidos': pedidos})
+@login_required
+def add_carrinho(request,id):
+    # usuario = User.objects.get(username = request.user)
+    try:
+        produto = Produto.objects.get(pk = id)
+        pedido_aux = Pedido.objects.get(nome_produto= produto.nome_produto)
+
+        if pedido_aux:
+            messages.info(request,'Erro! Já existe um usuário com o mesmo e-mail')
+            return redirect('detalhes', produto.pk)
+
+    except Pedido.DoesNotExist:
+        produto = Produto.objects.get(pk = id)
+        print(produto)
+        new_pedido = Pedido( id_cliente = request.user.id, nome_produto = produto.nome_produto, valor_produto = produto.valor_produto, quantidade = request.POST['quantidade'] )
+        print(new_pedido)
+        new_pedido.save()
+        print(produto)
+        return redirect('detalhes', produto.pk)
