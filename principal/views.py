@@ -1,6 +1,7 @@
 from multiprocessing import context
 from django.shortcuts import render, redirect
 from principal.forms import *
+from django.shortcuts import redirect,get_object_or_404
 from principal.models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required 
@@ -8,6 +9,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.views.decorators.http import require_POST
 from django.views.generic.list import ListView
+from django.views.generic.edit import UpdateView
 
 # Create your views here.
 
@@ -33,6 +35,11 @@ def cadastrar_usuario(request):
         return render(request, 'cadastro.html')
 
 @login_required
+def update_senha(UpdateView):
+    model = User
+    Template_name= 'cadastro.html'
+
+@login_required
 
 class Carrinho(ListView):
     model = Pedido
@@ -53,8 +60,8 @@ class lista_produtos(ListView):
 
 @login_required
 def perfil_user_view(request):
-    return render(request, 'perfil_user.html')
-    
+    usuario = User.objects.filter( id = request.user.id)
+    return render(request, 'perfil_user.html', {'usuario':usuario})
 
 
 def quemsomos(request):
@@ -120,7 +127,7 @@ def logout_aplicacao(request):
 
 @login_required
 def Comprar(request):
-    pedidos = Pedido.objects.filter(id_cliente = request.user )
+    pedidos = Pedido.objects.filter(id_cliente = request.user.id )
     return render(request, 'carrinho.html', {'pedidos': pedidos})
 @login_required
 def add_carrinho(request,id):

@@ -1,12 +1,97 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block conteudo %}
-    {% for item in pedidos %}
-    <p>{{item.nome_produto}}</p>
-    <p>{{item.valor_produto}}</p>
-    <p>{{item.nome_produto}}</p>
-    <p>{{item.quantidade}}</p>
-    <p>{{item.valor_total}}</p>
-    {% endfor %}
+<style>
+    .card {
+        background-color: rgba(162, 0, 255, 0.247);
+        border-radius: 30px;
+        color: antiquewhite;
+    }
 
+    .fonte {
+        font-size: 20px;
+    }
+
+    .quantidade {
+        width: 40%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        float: right;
+        margin-right: 5%;
+        width: 28%;
+    }
+
+    .cont {
+        background-color: black;
+        color: antiquewhite;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        font-weight: 900;
+        cursor: pointer;
+    }
+
+    .comprar {
+        float: right;
+        margin-right: 5%;
+        width: 28%;
+    }
+</style>
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+
+        <div class="">
+            <div class="card p-3 py-4">
+                <div>
+                    <h4 class="text-center mt-3" style="font-size: 18px;">Carrinho</h4>
+                    {% for item in pedidos %}
+                    <section class="margin-main container">
+                        <div class="row">
+                            <section class="col-lg-6">
+                                <h5 class="mt-2 mb-0" style="font-size: 20px;"> <strong> Apple
+                                        juice{{item.nome_produto}}
+                                    </strong></h5>
+                                <span>R$ 16,00{{item.valor_produto}}</span>
+                            </section>
+
+                            <section class="col-lg-6" style="justify-content: space-between;">
+                                <div class="quantidade">
+                                    <div class="cont">+</div>
+                                    <div>{{item.quantidade}}</div>
+                                    <div class="cont">-</div>
+                                </div>
+                            </section>
+
+                            <hr>
+                            <section class="col-lg-6">
+                                <div>
+                                    <div><strong>Valor Total:</strong></div>
+                                </div>
+                            </section>
+
+                            <section class="col-lg-6">
+                                <div class="comprar">
+                                    <div style="font-size: 22px;">
+                                        <strong>R$ {{item.valor_total}}</strong>
+                                    </div>
+                                    <button style="background-color: #000000; color: aliceblue;"
+                                        class="btn btn px-4">Comprar</button>
+                                </div>
+                            </section>
+
+                        </div>
+                    </section>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 {% endblock %}
