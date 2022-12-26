@@ -11,6 +11,7 @@ from django.views.decorators.http import require_POST
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView
 
+
 # Create your views here.
 
 @require_POST
@@ -36,8 +37,15 @@ def cadastrar_usuario(request):
 
 @login_required
 def update_senha(UpdateView):
-    model = User
     Template_name= 'cadastro.html'
+    model = User
+    fields = ['password']
+    success_url = 'index.html'
+
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(User, usuario=self.request.user)
+        return self.object
+
 
 @login_required
 
