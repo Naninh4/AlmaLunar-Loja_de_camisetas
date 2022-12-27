@@ -21,9 +21,8 @@ urlpatterns = [
     path('logout/', logout_aplicacao, name="logout"),
     path('carrinho/<int:id>/', add_carrinho, name='carrinho'),
     path('carrinho/', Comprar, name="carrinho"),
-    path('editar/', UpdateView.as_view(template_name='cadastro.html'), name='editar_senha'),
 
-
+ 
     # path('pedido/<int:id>', tela_pedido, name="pedido"),
     # path('pagamento/', tela_pagamento, name="pagamento"),
 

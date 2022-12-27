@@ -1,6 +1,6 @@
 from distutils.command.upload import upload
 from django.db import models
-from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth.models import User
 from django.conf import settings
 import decimal
 # Create your models here.
@@ -43,3 +43,7 @@ class Pedido (models.Model):
         self.valor_total = self.valor_produto * decimal.Decimal(self.quantidade)
         # self.id_cliente = User.get_username
         super(Pedido, self).save(*args, **kwargs)
+
+class Myuser(models.Model):
+    user = models.IntegerField()
+    cpf = models.CharField( max_length=11, blank=True)

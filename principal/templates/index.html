@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
-<div style="border-radius: 50px; box-shadow: 0 0 1em rgb(156, 37, 224);" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+<div style="border-radius: 50px; box-shadow: 0 0 1em rgb(156, 37, 224);" id="carouselExampleControls"
+  class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-    <div  class="carousel-item active">
+    <div class="carousel-item active">
       <img style="border-radius: 50px;" class="d-block w-100" src="/static/img/4.png" alt="First slide">
     </div>
     <div class="carousel-item">
@@ -15,7 +16,7 @@
     <div class="carousel-item">
       <img style="border-radius: 50px;" class="d-block w-100" src="/static/img/3.png" alt="Third slide">
     </div>
- 
+
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -24,5 +25,35 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
   </a>
 </div>
+
+<section class="promoções">
+  <section class="pngpromoções">
+    <img class="efeito-flutuante-infinito" src="/static/img/PROMOCAO.png" style="width: 80%;" alt="logo">
+  </section>
+  <style>
+    .imgpromo {
+      width: 100%;
+    }
+    .imgp{
+      width: 100%;
+
+    }
+    
+
+  </style>
+  <section class="imgpromo container-fluid ">
+    <div class="row">
+    <div class="zoom d-flex justify-content-center col-md-6 col-lg-6 mx-auto my-md-4 my-0 mt-4 mb-1 p-5">
+
+      <img class="imgp" src="/static/img/moletom.jpg">
+    </div>
+    <div class="zoom d-flex justify-content-center col-md-6 col-lg-6 mx-auto my-md-4 my-0 mt-4 mb-1  p-5">
+      <img class="imgp " src="/static/img/camiseta.jpg">
+    </div>
+  </div>
+
+
+  </section>
+</section>
 
 {% endblock conteudo %}

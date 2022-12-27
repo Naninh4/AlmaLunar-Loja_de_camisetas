@@ -9,7 +9,8 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.views.decorators.http import require_POST
 from django.views.generic.list import ListView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
+from sweetify import *
 
 
 # Create your views here.
@@ -27,31 +28,23 @@ def cadastrar_usuario(request):
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
-        new_user = User.objects.create_user(username=username, email=email, password=password)
+        cpf = request.POST['cpf']
+        new_user = User.objects.create_user(username=username, email=email, password=password) 
         new_user.save()
+        new_myuser = Myuser.objects.create( user = new_user.pk, cpf = cpf)
+        new_myuser.save()
         storage = messages.get_messages(request)
         storage=True
         messages.info(request,'Usuário cadastrado com sucesso!')
 
         return render(request, 'cadastro.html')
 
-@login_required
-def update_senha(UpdateView):
-    Template_name= 'cadastro.html'
-    model = User
-    fields = ['password']
-    success_url = 'index.html'
-
-    def get_object(self, queryset=None):
-        self.object = get_object_or_404(User, usuario=self.request.user)
-        return self.object
-
 
 @login_required
-
-class Carrinho(ListView):
-    model = Pedido
-    template_name = "carrinho.html"
+class remover_pedido(DeleteView):
+   model = Pedido
+   fields = '__all__'
+   success_url = '/carinho/'
 
 def view_form_cadastro(request):
     return render(request, "cadastro.html")
@@ -75,14 +68,6 @@ def perfil_user_view(request):
 def quemsomos(request):
     return render(request, "quemsomos.html")
 
-
-
-
-# def cal(request):
-#     quantidade = request.POST['quantidade']
-#     context = quantidade * Produto.valor_produto
-#     return render(request, 'pedido.html',context)
-
 @login_required
 def tela_pagamento (request):
     return render( request, 'pagamento.html')
@@ -93,25 +78,6 @@ def detalhes(request, id):
     context = {'produto': produto}
 
     return render(request, "detalhes.html", context)
-
-
-# def cadastro_cliente(request):
-#     #set infromações do cliente
-#     form = Cliente_form(request.POST or None)
-
-#     if request.method == "POST":
-#         form =Cliente_form(request.POST) #Armazenando o formulário criado a uma lista
-#         print(request.POST)
-#         if form.is_valid():
-#            form.save()
-#         else:
-#             form = Cliente_form()
-        
-#         form = Cliente_form()
-
-#     return render(request, 'login.html', {'form': form })
-
-
 
 def pesquisa(request):
    
@@ -139,7 +105,6 @@ def Comprar(request):
     return render(request, 'carrinho.html', {'pedidos': pedidos})
 @login_required
 def add_carrinho(request,id):
-    # usuario = User.objects.get(username = request.user)
     try:
         produto = Produto.objects.get(pk = id)
         pedido_aux = Pedido.objects.get(nome_produto= produto.nome_produto)

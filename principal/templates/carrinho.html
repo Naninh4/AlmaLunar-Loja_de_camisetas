@@ -50,20 +50,19 @@
                 <div>
                     <h4 class="text-center mt-3" style="font-size: 18px;">Carrinho</h4>
                     {% for item in pedidos %}
-                    <section class="margin-main container">
+                    <section class="margin-main container mb-5 mt-5">
                         <div class="row">
                             <section class="col-lg-6">
                                 <h5 class="mt-2 mb-0" style="font-size: 20px;"> <strong> Apple
                                         juice{{item.nome_produto}}
                                     </strong></h5>
-                                <span>R$ 16,00{{item.valor_produto}}</span>
+                                <span>R$ {{item.valor_produto}}</span>
                             </section>
 
                             <section class="col-lg-6" style="justify-content: space-between;">
                                 <div class="quantidade">
-                                    <div class="cont">+</div>
+                                    <div>Quantidade: </div>
                                     <div>{{item.quantidade}}</div>
-                                    <div class="cont">-</div>
                                 </div>
                             </section>
 
@@ -75,12 +74,18 @@
                             </section>
 
                             <section class="col-lg-6">
-                                <div class="comprar">
-                                    <div style="font-size: 22px;">
-                                        <strong>R$ {{item.valor_total}}</strong>
+                                <div class="comprar d-flex justify-content-around">
+                                    <div style="font-size: 22px; margin-right: 10px;">
+                                        <strong>R${{item.valor_total}}</strong>
                                     </div>
-                                    <button style="background-color: #000000; color: aliceblue;"
-                                        class="btn btn px-4">Comprar</button>
+                                    <a href="#">
+                                        <button style="background-color: #ae00ff; color: aliceblue;"
+                                            class="btn btn-primary border-0">Comprar</button>
+                                    </a>
+                                    <a href="">
+                                        <button style="background-color: #ae00ff; color: aliceblue;"
+                                            class="btn btn-danger border-0">remover</button>
+                                    </a>
                                 </div>
                             </section>
 
