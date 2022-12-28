@@ -3,8 +3,6 @@ from django.contrib import admin
 from django.urls import path
 from principal.views import *
 from django.conf import settings
-from principal.models import * 
-from principal.forms import *
 from django.contrib.auth.views import LoginView
 
 urlpatterns = [
@@ -22,9 +20,8 @@ urlpatterns = [
     path('carrinho/<int:id>/', add_carrinho, name='carrinho'),
     path('carrinho/', Comprar, name="carrinho"),
     path('remover_item/<int:id>', remover_pedido, name='remover_item'),
-
- 
-    # path('pedido/<int:id>', tela_pedido, name="pedido"),
-    # path('pagamento/', tela_pagamento, name="pagamento"),
+    path('pagamento/<int:id>/', tela_pagamento, name="pagamento"),
+    path('cadastrar_endereco/', cadastro_adress, name='cadastro_adress'),
+    path('remover_endereco/<int:id>', remover_adress, name='remover_adress'),
 
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -13,12 +13,14 @@
         font-size: 20px;
         float: left;
     }
-    .table{
-        border: 0px;
-        border-color:  rgba(162, 0, 255, 0.247);
-        color: white;    
+
+    .table {
+        border: 1px;
+        border-color: rgba(162, 0, 255, 0.247);
+        color: white;
     }
-    .icons_perfil{
+
+    .icons_perfil {
         box-shadow: 0 0 1rem rgba(162, 0, 255, 0.247) !important;
         align-items: center;
         display: flex;
@@ -26,13 +28,19 @@
         width: 5rem;
         height: 5rem;
         border-radius: 50%;
-        
+
     }
-    .table>:not(:first-child){
-        border-top: 2px solid rgba(162, 0, 255, 0) !important;
-        background-color: rgba(162, 0, 255, 0.082) ;
+    .btn.btn-danger{
+        background-color: rgba(162, 0, 255, 0.39);
+        border: 0px;
     }
-    th{
+
+    .table>:not(:first-child) {
+        border-top: 2px solid rgba(162, 0, 255, 0.39) !important;
+        background-color: rgba(162, 0, 255, 0.082);
+    }
+
+    th {
         font-weight: lighter !important;
     }
 </style>
@@ -46,66 +54,80 @@
                     ">
                 </div>
                 <div class="text-center mt-3">
-                    {% for user in usuario %}
                     <h5 class="mt-2 mb-0" style="font-size: 40px;"> <strong> {{user.username}} </strong></h5>
                     <span>...vive no mundo da lua</span>
-                    <section class="row">
-                    <section class="col-6 d-flex justify-content-around align-items-center">
+                    <div class="row d-flex m-auto flex-column justify-content-center align-items-center">
+                        <div class="col-lg-10 m-3 justify-content-between d-flex align-items-end">
+                            {% for user in usuario %}
+                            <div style="float: left;" class="col-lg-2 ">
 
-                        <div class="icons_perfil">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-envelope-at" viewBox="0 0 16 16">
-                            <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
-                            <path d="M14.247 14.269c1.01 0 1.587-.857 1.587-2.025v-.21C15.834 10.43 14.64 9 12.52 9h-.035C10.42 9 9 10.36 9 12.432v.214C9 14.82 10.438 16 12.358 16h.044c.594 0 1.018-.074 1.237-.175v-.73c-.245.11-.673.18-1.18.18h-.044c-1.334 0-2.571-.788-2.571-2.655v-.157c0-1.657 1.058-2.724 2.64-2.724h.04c1.535 0 2.484 1.05 2.484 2.326v.118c0 .975-.324 1.39-.639 1.39-.232 0-.41-.148-.41-.42v-2.19h-.906v.569h-.03c-.084-.298-.368-.63-.954-.63-.778 0-1.259.555-1.259 1.4v.528c0 .892.49 1.434 1.26 1.434.471 0 .896-.227 1.014-.643h.043c.118.42.617.648 1.12.648Zm-2.453-1.588v-.227c0-.546.227-.791.573-.791.297 0 .572.192.572.708v.367c0 .573-.253.744-.564.744-.354 0-.581-.215-.581-.8Z"/>
-                          </svg>
-                        </div>
-                            <p class="fonte"> <strong>{{user.email}}</strong></p>
-                    </section>
-                    {% endfor %}
-                    {% for pedido in pedidos %}
-                    <section class="col-4 d-flex justify-content-around align-items-center ">
-                        <div class="icons_perfil">
-                            <svg style="margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-file-earmark-person-fill" viewBox="0 0 16 16">
-                                <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm2 5.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-.245S4 12 8 12s5 1.755 5 1.755z"/>
-                              </svg>
+                            <svg style="float: left;" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                                class="bi bi-envelope-at" viewBox="0 0 16 16">
+                                <path
+                                    d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z" />
+                                <path
+                                    d="M14.247 14.269c1.01 0 1.587-.857 1.587-2.025v-.21C15.834 10.43 14.64 9 12.52 9h-.035C10.42 9 9 10.36 9 12.432v.214C9 14.82 10.438 16 12.358 16h.044c.594 0 1.018-.074 1.237-.175v-.73c-.245.11-.673.18-1.18.18h-.044c-1.334 0-2.571-.788-2.571-2.655v-.157c0-1.657 1.058-2.724 2.64-2.724h.04c1.535 0 2.484 1.05 2.484 2.326v.118c0 .975-.324 1.39-.639 1.39-.232 0-.41-.148-.41-.42v-2.19h-.906v.569h-.03c-.084-.298-.368-.63-.954-.63-.778 0-1.259.555-1.259 1.4v.528c0 .892.49 1.434 1.26 1.434.471 0 .896-.227 1.014-.643h.043c.118.42.617.648 1.12.648Zm-2.453-1.588v-.227c0-.546.227-.791.573-.791.297 0 .572.192.572.708v.367c0 .573-.253.744-.564.744-.354 0-.581-.215-.581-.8Z" />
+                            </svg>
                             </div>
-                        <strong>
-                            <p class="fonte">{{pedido.cpf}}</p>
-                        </strong>
-                    </section>
-                    </section>
-                    <h2>Endereços cadastrados: </h2>
-                    {% endfor %}
-                    <table class="table-responsive">
-                        <table class="table">
-                            <caption>List of users</caption>
-                            <thead>
-                                <tr>
-                                    <th scope="col">Rua</th>
-                                    <th scope="col">Pais</th>
-                                    <th scope="col">Estado</th>
-                                    <th scope="col">Opções</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for field in endereco %}
+                            <p class="fonte"><strong>{{user.email}}</strong></p>
+                            {% endfor %}
 
-                                <tr>
-                                    <td>{{field.rua}}</td>
-                                    <td>{{field.pais}</td>
-                                    <td>{{field.estado}}</td>
-                                    <th scope="row"><button> remover </button> <button>editar</button></th>
-                                </tr>
+                        </div>
+                        <div  class="col-lg-10 d-flex m-2 justify-content-between align-items-end ">
+                            <div style="float: left;"  class="col-lg-2">
+                            <svg style="float: left; padding: 0px;" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                                fill="currentColor" class="bi bi-file-earmark-person-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm2 5.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-.245S4 12 8 12s5 1.755 5 1.755z" />
+                            </svg>
+                            </div>
+                            {% for pedido in pedidos %}
+                            
+                            <strong>
+                                <p class="fonte">Cpf: {{pedido.cpf}}</p>
+                            </strong>
+                        </div>
+                        {% endfor %}
 
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </table>
+                    </div>
                 </div>
+                <h2>Endereços cadastrados: </h2>
+                <table class="table-responsive">
+                    <table style="text-align: left;" class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Endereço</th>
+                                <th scope="col">Opções</th>
 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for field in endereco %}
 
+                            <tr>
+                                <td> Rua: {{field.rua}}, {{field.numero}}°, {{field.cidade}} - {{field.estado}} -
+                                    {{field.pais}}</td>
+                                <th scope="row">
+                                    <a href="{% url 'remover_adress' field.id %}">
+                                        <button class="btn btn-danger"> remover </button>
+                                    </a>
+                                </th>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </table>
+                <a href="{% url 'cadastro_adress' %}">
+                    <button class="btn btn-danger">Cadastrar endereço</button>
+                </a>
             </div>
+
         </div>
+
     </div>
+</div>
+</div>
 </div>
 
 {% endblock conteudo %}

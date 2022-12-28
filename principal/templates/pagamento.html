@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block conteudo %}
 <style>
+
     .card.pag {
         margin: 10px !important;
         color: black;
@@ -17,16 +18,38 @@
         justify-content: space-around;
     }
 </style>
-<section>
+<section style="line-height:inherit;">
     <div class="row row-cols-sm-2  row-cols-lg-4 row-cols-md-3">
         <div class="card pag" style="width: 30rem;">
             <div class="card-body">
-                <img src="/static/img/qr.png" width="50%" class="card-img-left" alt="Imagem de capa do card">
-                <div style=" margin: 2px; text-align: center ; font-size:14px;">
-                    <p style="margin:0% ; color: blueviolet;"> chave pix: </p> <!--escrever chave-->
+                <img src="/static/img/qr.png" width="50%" class="card-img justify-content-center" alt="Imagem de capa do card">
+            </div>
+            <div style="color: rgb(0, 0, 0);" class="comprar col d-flex justify-content-center align-items-end">
+                <div style="font-size: 22px; text-align: center;" class="col-10">
+                    <strong>Valor total: R${{valor}}</strong>
                 </div>
             </div>
+            <div style=" margin: 2px; text-align: center ; font-size:20px;">
+                <p style="margin:0% ; color: rgb(0, 0, 0);"><strong>chave pix: (84) 999646923 </strong>  </p> <!--escrever chave-->
+            </div>
+            
+            {% for campo in pedidos %}
+            <ul class="list-group">
+                <li class="list-group-item"><svg style="color: blueviolet; margin: 5px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                    <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                  </svg>{{campo.nome_produto}} - R$ {{campo.valor_produto}}</li>
+            </ul>
+            {% endfor %}
+            {% for end in endereco %}
+            <div style="color: rgb(0, 0, 0);" class="comprar col d-flex justify-content-center align-items-end">
+                <div style="font-size: 14px; text-align: left;" class="col-10">
+                    <p><strong>Endereço: </strong>{{end.rua}}, {{end.numero}} - {{end.cidade}}</p>
+                </div>
+            </div>
+            {% endfor %}
+            
         </div>
     </div>
 </section>
+
 {% endblock conteudo %}

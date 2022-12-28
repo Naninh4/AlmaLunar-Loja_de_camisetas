@@ -31,6 +31,7 @@ class Adress (models.Model):
     
     def __str__(self):
         return "Rua: {},N° {}, {}, {}, {}, {}".format(self.rua, self.numero, self.bairro, self.cidade, self.estado, self.pais)
+        
 class Pedido (models.Model):
     id_cliente = models.IntegerField()
     nome_produto = models.CharField(max_length=250 )
@@ -44,4 +45,4 @@ class Pedido (models.Model):
     
 class Meu_usuario(models.Model):
     id_usuario = models.IntegerField()
-    cpf = models.CharField( max_length=11, blank=True)
+    cpf = models.CharField( max_length=14, blank=True)

@@ -9,7 +9,7 @@ class CategoriaAdmin(admin.ModelAdmin):
 
 admin.site.register(Categoria)
 admin.site.register(Produto,ProdutoAdmin)
-# admin.site.register(Adress)
+admin.site.register(Adress)
 admin.site.register(Pedido)
 admin.site.register(Meu_usuario)
 

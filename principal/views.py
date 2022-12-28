@@ -1,8 +1,8 @@
 from multiprocessing import context
 from django.shortcuts import render, redirect
-from principal.forms import *
+from principal.forms import Adress_form
 from django.shortcuts import redirect,get_object_or_404
-from principal.models import *
+from principal.models import Adress, Meu_usuario, Pedido, Produto
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required 
 from django.contrib.auth import logout
@@ -40,12 +40,6 @@ def cadastrar_usuario(request):
         return render(request, 'cadastro.html')
 
 
-@login_required
-def remover_pedido(request, id):
-   pedido_rm = Pedido.objects.get( id = id)
-   pedido_rm.delete()
-   return redirect('/carrinho/')
-
 def view_form_cadastro(request):
     return render(request, "cadastro.html")
 
@@ -72,8 +66,33 @@ def quemsomos(request):
     return render(request, "quemsomos.html")
 
 @login_required
-def tela_pagamento (request):
-    return render( request, 'pagamento.html')
+def tela_pagamento (request, id):
+    endereco = Adress.objects.filter( id = id)
+    pedidos = Pedido.objects.filter(id_cliente = request.user.id)
+    valor = 0
+    for x in pedidos:
+        valor += x.valor_total
+    
+    return render( request,'pagamento.html',{'pedidos': pedidos, 'endereco': endereco, 'valor': valor} )
+
+@login_required
+def cadastro_adress(request):
+    if request.method == 'POST':
+        form = Adress_form(request.POST)
+        if form.is_valid():
+            form.instance.id_cliente = request.user.id
+            form.save()
+            return redirect('/perfil')
+    else:
+        form = Adress_form()
+
+    print(form.errors)
+    return render(request, 'cadastro_adress.html', {'form': form })
+
+   # for x in pedidos:
+    #   valor += pedidos.valor_total
+    # print(valor)
+    # nota = nota_fiscal.objects.create( id_cliente = request.user.id, id_adress = endereco.pk, total = valor)
 
 def detalhes(request, id):
     #get detalhes do produto
@@ -102,10 +121,17 @@ def logout_aplicacao(request):
     logout(request)
     return redirect('login')
 
+
 @login_required
 def Comprar(request):
     pedidos = Pedido.objects.filter(id_cliente = request.user.id )
-    return render(request, 'carrinho.html', {'pedidos': pedidos})
+    endereco = Adress.objects.filter( id_cliente = request.user.id)
+    valor = 0
+    for x in pedidos:
+        valor += x.valor_total
+    
+    return render(request, 'carrinho.html', {'pedidos': pedidos, 'endereco': endereco , 'valor': valor})
+
 @login_required
 def add_carrinho(request,id):
     try:
@@ -124,3 +150,15 @@ def add_carrinho(request,id):
         new_pedido.save()
         print(produto)
         return redirect('detalhes', produto.pk)
+
+@login_required
+def remover_adress(request, id):
+   adress_rm = Adress.objects.get( id = id)
+   adress_rm.delete()
+   return redirect('/perfil/')
+
+@login_required
+def remover_pedido(request, id):
+   pedido_rm = Pedido.objects.get( id = id)
+   pedido_rm.delete()
+   return redirect('/carrinho/')

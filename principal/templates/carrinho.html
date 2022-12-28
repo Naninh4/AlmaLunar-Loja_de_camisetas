@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load bootstrap %}
 {% block conteudo %}
 <style>
     .card {
@@ -50,7 +51,7 @@
                 <div>
                     <h1 class="text-center mt-3"><strong>Carrinho</strong></h1>
                     {% for item in pedidos %}
-                    <section class="margin-main container mb-5 mt-5">
+                    <section class=" margin-main container mb-5 mt-5">
                         <div class="row">
                             <section class="col-lg-6">
                                 <h5 class="mt-2 mb-0" style="font-size: 20px;"> <strong> Apple
@@ -72,29 +73,63 @@
                                     <div><strong>Valor Total:</strong></div>
                                 </div>
                             </section>
-                                <div class="comprar col d-flex justify-content-between">
-                                    <div style="font-size: 22px;">
-                                        <strong>R${{item.valor_total}}</strong>
-                                    </div>
-                                    <a href="#">
-                                        <button
-                                            style="background-color: #ae00ff; color: aliceblue; margin-right: 0.8rem; margin-left: 0.8rem;"
-                                            class="btn btn-primary border-0">Comprar</button>
-                                    </a>
-                                    <a href="{% url 'remover_item' item.id %}">
-                                        <button style="background-color: #ae00ff; color: aliceblue;"
-                                            class="btn btn-danger border-0">remover</button>
-                                    </a>
+                            <div class="comprar col d-flex justify-content-end align-items-end">
+                                <div style="font-size: 22px; text-align: right;" class="col-4">
+                                    <strong>R${{item.valor_total}}</strong>
                                 </div>
-
+                            </div>
+                            <div class="col-lg-6 p-0">
+                                <a href="#">
+                                    <button
+                                        style="background-color: #ae00ff1c; color: aliceblue; border-bottom: 2px solid #3b0255 !important;margin-right: 0.8rem; margin-left: 0.8rem;"
+                                        class="btn btn-primary border-0">Comprar</button>
+                                </a>
+                                <a href="{% url 'remover_item' item.id %}">
+                                    <button
+                                        style="background-color: #ae00ff1c; color: aliceblue; border-bottom: 2px solid #3b0255 !important;"
+                                        class="btn btn-danger border-0">remover</button>
+                                </a>
+                            </div>
+                            {% endfor %}
                         </div>
                     </section>
-                    {% endfor %}
 
                 </div>
             </div>
+
         </div>
 
     </div>
 </div>
-{% endblock %}
+<div class="container mt-5">
+    <div class="row">
+
+        <div class="mt-4">
+            <div class="card p-3 py-4 align-items-center">
+                <div class=" d-flex">
+                    <h1 style="margin-right: 10px !important;" class="text-center mt-3"><strong>Selecionar endereço:
+                        </strong></h1>
+                    {% for field in endereco %}
+                    <select style="color: white;  border-bottom: 2px solid #3b0255 !important;"
+                        class=" border-0 m-auto form-control-lg bg-opacity-10 bg-dark ">
+                        <option value="#">--- </option> 
+                        <option value="{{fiel.id_cliente}}">{{field.rua}},{{field.numero}}, {{field.cidade}}</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <a style="text-decoration: none;" href="{% url 'pagamento' field.pk %}"
+        class=" container-fluid mt-5 d-flex justify-content-end align-items-center">
+        <div style="color: white;" class="comprar col d-flex justify-content-end align-items-end">
+            <div style="font-size: 22px; text-align: right;" class="col-10">
+                <strong>Valor total: R${{valor}}</strong>
+            </div>
+        </div>
+        <button style="background-color: #ae00ff1c; color: aliceblue; border-bottom: 2px solid #3b0255 !important; box-shadow: 0 0 1rem rgba(0, 0, 0, 0.247) !important;"
+            class="btn btn-danger border-0">Finalizar compra</button>
+    </a>
+    {% endfor %}
+    {% endblock %}
