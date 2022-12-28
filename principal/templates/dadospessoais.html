@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block conteudo %}
+
+    {% for pedido in pedidos %}
+    <section>
+        <strong>
+            <p>{{pedido.id_usuario}}</p>
+            <p class="fonte">CPF:{{pedido.cpf}}</p>
+        </strong>
+    </section>
+    {% endfor %}
+    {% for pedido in pedidos %}
+                    <section>
+                        <strong>
+                            <p>{{pedido.id_usuario}}</p>
+                            <p class="fonte">CPF:{{pedido.cpf}}</p>
+                        </strong>
+                    </section>
+    {% endfor %}
+{% endblock %}

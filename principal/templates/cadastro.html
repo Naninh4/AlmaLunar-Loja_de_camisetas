@@ -16,10 +16,19 @@
                                         <img src="/static/img/logo.png" style="width: 185px;" alt="logo">
                                         <h4 class="mt-1 mb-5 pb-1">Junte-se a nós!</h4>
                                     </div>
-
+                                        {% if messages %}
+                                        {% for message in messages %}
+                                        <p style="font-size: 12px !important; color:rgb(255, 255, 255); border-radius: 30px ; " {% if message.tags %}
+                                            class="card alert {{ message.tags }}" {% endif %}>{{ message }}
+                                            
+                                            <a style="color:white;" href="{% url 'login' %}">faça login!</a></p>
+                                        
+                                        {% endfor %}
+                                        {% endif %}
                                     <form method='post' action="{% url 'cadastrar' %}">
                                         {% csrf_token %}
                                         <p>Cadastre-se agora e aproveite!</p>
+                                        
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="username">Nome de usuario: </label>
                                             <input type="text" id="username" class="form-control"
@@ -46,13 +55,7 @@
                                         <div class="text-center d-grid pt-1 mb-5 pb-1">
                                             <button class="btn btn-primary border-0 fa-lg gradient-custom-2 mb-3"
                                                 type="submit" name="submit" value="Logar">Cadastrar</button>
-                                            <!-- <a class="text-muted" href="#!">Esqueceu sua senha?</a> -->
-                                            {% if messages %}
-                                            {% for message in messages %}
-                                            <p style="font-size: 12px !important; color:rgba(99,0,153,1); " {% if message.tags %}
-                                                class="{{ message.tags }}" {% endif %}>{{ message }}</p>
-                                            {% endfor %}
-                                            {% endif %}
+                                           
                                         </div>
 
 
@@ -64,8 +67,7 @@
                                 <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                                     <h4 class="mb-4">Nós somos mais do que lunáticos</h4>
                                     <p class="small mb-0">
-                                        Bem-vindo a Alma Lunar!
-Espaço de venda de, principalmente, moletons e camisetas geeks com promoções e ofertas que vão levá-lo a outro planeta.
+                                        
                                        </p>
                                 </div>
                             </div>

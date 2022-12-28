@@ -9,8 +9,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.views.decorators.http import require_POST
 from django.views.generic.list import ListView
-from django.views.generic.edit import DeleteView
-from sweetify import *
+
 
 
 # Create your views here.
@@ -21,7 +20,7 @@ def cadastrar_usuario(request):
         usuario_aux = User.objects.get(email=request.POST['email'])
 
         if usuario_aux:
-            messages.info(request,'Erro! Já existe um usuário com o mesmo e-mail')
+            messages.info(request,'Erro! Esse email já está cadastrado.')
             return render(request, 'cadastro.html')
 
     except User.DoesNotExist:
@@ -31,20 +30,21 @@ def cadastrar_usuario(request):
         cpf = request.POST['cpf']
         new_user = User.objects.create_user(username=username, email=email, password=password) 
         new_user.save()
-        new_myuser = Myuser.objects.create( user = new_user.pk, cpf = cpf)
+        new_myuser = Meu_usuario.objects.create( id_usuario = new_user.pk, cpf = cpf)
         new_myuser.save()
         storage = messages.get_messages(request)
         storage=True
+
         messages.info(request,'Usuário cadastrado com sucesso!')
 
         return render(request, 'cadastro.html')
 
 
 @login_required
-class remover_pedido(DeleteView):
-   model = Pedido
-   fields = '__all__'
-   success_url = '/carinho/'
+def remover_pedido(request, id):
+   pedido_rm = Pedido.objects.get( id = id)
+   pedido_rm.delete()
+   return redirect('/carrinho/')
 
 def view_form_cadastro(request):
     return render(request, "cadastro.html")
@@ -61,8 +61,11 @@ class lista_produtos(ListView):
 
 @login_required
 def perfil_user_view(request):
+    endereco = Adress.objects.filter(id_cliente = request.user.id)
+    pedidos = Meu_usuario.objects.filter(id_usuario = request.user.id)
     usuario = User.objects.filter( id = request.user.id)
-    return render(request, 'perfil_user.html', {'usuario':usuario})
+    return render(request, 'perfil_user.html',{'usuario':usuario, 'pedidos': pedidos, 'endereco': endereco})
+
 
 
 def quemsomos(request):

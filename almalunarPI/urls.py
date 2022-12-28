@@ -21,6 +21,7 @@ urlpatterns = [
     path('logout/', logout_aplicacao, name="logout"),
     path('carrinho/<int:id>/', add_carrinho, name='carrinho'),
     path('carrinho/', Comprar, name="carrinho"),
+    path('remover_item/<int:id>', remover_pedido, name='remover_item'),
 
  
     # path('pedido/<int:id>', tela_pedido, name="pedido"),

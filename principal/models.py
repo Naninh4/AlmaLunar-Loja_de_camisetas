@@ -1,6 +1,5 @@
 from distutils.command.upload import upload
 from django.db import models
-from django.contrib.auth.models import User
 from django.conf import settings
 import decimal
 # Create your models here.
@@ -20,9 +19,9 @@ class Produto(models.Model):
     def __str__(self):
         return self.nome_produto
 
-
+    
 class Adress (models.Model):
-    id_cliente = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_cliente = models.IntegerField()
     pais = models.CharField(max_length=200)
     estado = models.CharField(max_length=200)
     cidade = models.CharField(max_length=200)
@@ -41,9 +40,8 @@ class Pedido (models.Model):
 
     def save(self,*args, **kwargs):
         self.valor_total = self.valor_produto * decimal.Decimal(self.quantidade)
-        # self.id_cliente = User.get_username
         super(Pedido, self).save(*args, **kwargs)
-
-class Myuser(models.Model):
-    user = models.IntegerField()
+    
+class Meu_usuario(models.Model):
+    id_usuario = models.IntegerField()
     cpf = models.CharField( max_length=11, blank=True)
