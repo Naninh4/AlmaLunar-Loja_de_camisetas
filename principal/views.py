@@ -89,11 +89,6 @@ def cadastro_adress(request):
     print(form.errors)
     return render(request, 'cadastro_adress.html', {'form': form })
 
-   # for x in pedidos:
-    #   valor += pedidos.valor_total
-    # print(valor)
-    # nota = nota_fiscal.objects.create( id_cliente = request.user.id, id_adress = endereco.pk, total = valor)
-
 def detalhes(request, id):
     #get detalhes do produto
     produto = Produto.objects.get(pk=id)
@@ -122,7 +117,6 @@ def logout_aplicacao(request):
     return redirect('login')
 
 
-@login_required
 def Comprar(request):
     pedidos = Pedido.objects.filter(id_cliente = request.user.id )
     endereco = Adress.objects.filter( id_cliente = request.user.id)
@@ -132,14 +126,15 @@ def Comprar(request):
     
     return render(request, 'carrinho.html', {'pedidos': pedidos, 'endereco': endereco , 'valor': valor})
 
+
 @login_required
 def add_carrinho(request,id):
     try:
         produto = Produto.objects.get(pk = id)
-        pedido_aux = Pedido.objects.get(nome_produto= produto.nome_produto)
+        pedido_aux = Pedido.objects.get(nome_produto = produto.nome_produto, id_cliente = request.user.id)
 
         if pedido_aux:
-            messages.info(request,'Erro! Já existe um usuário com o mesmo e-mail')
+            messages.info(request,'Esse produto já foi adicionado ao carrinho!')
             return redirect('detalhes', produto.pk)
 
     except Pedido.DoesNotExist:

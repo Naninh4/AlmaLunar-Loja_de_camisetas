@@ -7,9 +7,10 @@ body{
     background-attachment: fixed;
     margin: 0;
     font-family: "Montserrat", sans-serif;
-    color: #4f1a58;
+    color: #4a0357;
     padding: 0% !important;
 }
+
 *{
     font-family: "Montserrat", sans-serif;   
 }
@@ -17,12 +18,15 @@ body{
 html1{
     height: 100%;
 }
-
+.form-control.bg-black.bg-opacity-10{
+    color: rgba(255, 255, 255, 0.541) !important;
+}
 .form-control.mr-sm-2{
     background-color: black !important;
     border: 0px !important;
     border-bottom:  2px solid #4f1a58 !important;
     float: right !important ;
+    color: white !important;
 }
 .nav-link{
     color: white !important;
