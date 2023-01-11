@@ -2,6 +2,7 @@
 {% block conteudo %}
 
 <style>
+  
   .container-lg {
     width: 90%;
     margin-bottom: 50px;
@@ -16,7 +17,7 @@
     line-height: 34px;
 
   }
-
+ 
   .product-intro__size-radio-inner {
     max-width: 100%;
     overflow: hidden;
@@ -26,7 +27,7 @@
   }
 </style>
 </div>
-<section class="container-fluid">
+<section  class="container-fluid">
   <div class="row justify-content-center" style="margin-bottom:20px ;">
     <div class="col-4">
       <img class="img-fluid" src="/static/img/detalhe.png" alt="detalherosaneon">
@@ -35,13 +36,13 @@
       <img class="img-fluid" src="/static/img/detalheroxo.png" alt="detalheroxoneon">
     </div>
 </section>
-<section class="container m-auto">
-  <div class="row d-grid">
-    <div style="padding: 0%; display: flex; justify-content: center;" class="col">
+<section class="container m-auto p-5">
+  <div class="row flex-wrap">
+    <div style="padding: 0%;" class=" col-md-6 col-lg-6 mx-auto">
       <img style="width: 30rem; border-radius: 40px;" class="img-fluid" src="/media/{{produto.imagem_produto}}"
         alt="detalhes{{produto.nome_produto}}}">
     </div>
-    <div style="text-align:left; margin-top: 10px; padding: 0%; color: white; font-size: 20px;" class="col ">
+    <div style="text-align:left; margin-top: 10px; padding: 0%; color: white; font-size: 20px;" class="d-flex flex-column justify-content-center col-md-6 col-lg-6 mx-auto ">
       <h2 class="admake-product-name">{{produto.nome_produto}}</h2>
       <h5>Descrição</h5>
       <p style="text-align: justify;">
@@ -83,14 +84,9 @@
       
             <button class="btn btn-primary" type="submit"> Adicionar ao carrinho </button>
       </form>
-      <br>
-      <button class="btn btn-primary "> Comprar </button>
-      
-      <br>
-
-      <a href="{% url 'produtos' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+      <a style="color: #ffffff;" href="{% url 'produtos' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
           class="bi bi-arrow-return-left" viewBox="0 0 16 16">
-          <path fill-rule="evenodd"
+          <path fill-rule="evenodd" 
             d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
         </svg> voltar </a>
 
@@ -98,9 +94,7 @@
   </div>
 </section>
 <style>
-  body {
-    text-align: center;
-  }
+
 
   .estrelas input[type=radio] {
     display: none;
