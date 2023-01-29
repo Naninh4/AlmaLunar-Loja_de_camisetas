@@ -42,6 +42,32 @@
         margin-right: 5%;
         width: 28%;
     }
+    .endereco{
+        background-color: rgba(162, 0, 255, 0.075);
+        border-radius: 30px;
+        color: antiquewhite;
+    }
+    @media (max-width: 900px) {
+        
+        .txt.text-center.mt-3{
+            font-size: 16px !important;
+        }
+    }
+    select{
+        width: 100%;
+        font-size: 75% !important;
+    }
+    @media (max-width: 760px) {
+        footer{
+            font-size: 14px;
+        }
+        .txt.text-center.mt-3{
+            font-size: 12px !important;
+        }
+        select{
+            font-size: 50% !important;
+        }
+    }
 </style>
 <div class="container mt-5">
     <div class="row">
@@ -54,8 +80,7 @@
                     <section class=" margin-main container mb-5 mt-5">
                         <div class="row">
                             <section class="col-lg-6">
-                                <h5 class="mt-2 mb-0" style="font-size: 20px;"> <strong> Apple
-                                        juice{{item.nome_produto}}
+                                <h5 class="mt-2 mb-0" style="font-size: 20px;"> <strong>{{item.nome_produto}}
                                     </strong></h5>
                                 <span>R$ {{item.valor_produto}}</span>
                             </section>
@@ -101,35 +126,36 @@
 
     </div>
 </div>
-<div class="container mt-5">
-    <div class="row">
+{% for field in endereco %}
 
-        <div class="mt-4">
-            <div class="card p-3 py-4 align-items-center">
-                <div class=" d-flex">
-                    <h1 style="margin-right: 10px !important;" class="text-center mt-3"><strong>Selecionar endereço:
-                        </strong></h1>
-                    {% for field in endereco %}
-                    <select style="color:#3b0255 ;  border-bottom: 2px solid #3b0255 !important;"
-                        class=" border-0 m-auto form-control-lg bg-opacity-10 bg-dark ">
-                        <option value="#">--- </option> 
-                        <option value="{{fiel.id_cliente}}">{{field.rua}},{{field.numero}}, {{field.cidade}}</option>
-                    </select>
-                </div>
-            </div>
+<div class="container-fluid mt-5 endereco">
+    <div class="row align-items-center m-auto justify-content-between p-2">
+        <div class="col-6">
+            <h1 style="margin-right: 10px !important;" class="txt text-center mt-3"><strong>Selecionar endereço:
+                </strong></h1>
+        </div>
 
+        <div class="col-6 align-items-center ">
+
+            <select style="color:white; border-bottom: 2px solid #3b0255 !important;"
+                class="form-control d-block bg-black border-0 bg-opacity-10 m-auto">
+                <option value="#">--- </option>
+                <option style="background-color: #3b0255 !important; color: white;" class="text-truncate" value="{{fiel.id_cliente}}">
+                    {{field.rua}},{{field.numero}}, {{field.cidade}}</option>
+            </select>
         </div>
     </div>
-    
-    <a style="text-decoration: none;" href="{% url 'pagamento' field.pk %}"
-        class=" container-fluid mt-5 d-flex justify-content-end align-items-center">
-        <div style="color: white;" class="comprar col d-flex justify-content-end align-items-end">
-            <div style="font-size: 22px; text-align: right;" class="col-10">
-                <strong>Valor total: R${{valor}}</strong>
-            </div>
+</div>
+<a style="text-decoration: none;" href="{% url 'pagamento' field.pk %}"
+    class=" container-fluid mt-5 d-flex justify-content-end align-items-center">
+    <div style="color: white;" class="comprar col d-flex justify-content-end align-items-end">
+        <div style="font-size: 22px; text-align: right;" class="col-10">
+            <strong>Valor total: R${{valor}}</strong>
         </div>
-        <button style="background-color: #ae00ff1c; color: aliceblue; border-bottom: 2px solid #3b0255 !important; box-shadow: 0 0 1rem rgba(0, 0, 0, 0.247) !important;"
-            class="btn btn-danger border-0">Finalizar compra</button>
-    </a>
-    {% endfor %}
-    {% endblock %}
+    </div>
+    <button
+        style="background-color: #ae00ff1c; color: aliceblue; border-bottom: 2px solid #3b0255 !important; box-shadow: 0 0 1rem rgba(0, 0, 0, 0.247) !important;"
+        class="btn btn-danger border-0">Finalizar compra</button>
+</a>
+{% endfor %}
+{% endblock %}

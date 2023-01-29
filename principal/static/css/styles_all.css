@@ -10,7 +10,12 @@ body{
     color: #4a0357;
     padding: 0% !important;
 }
-
+.branco{
+ color: white !important;
+}
+.preto{
+    color: black !important;
+}
 *{
     font-family: "Montserrat", sans-serif;   
 }
@@ -18,6 +23,8 @@ body{
 html1{
     height: 100%;
 }
+
+
 .form-control.bg-black.bg-opacity-10{
     color: rgba(255, 255, 255, 0.541) !important;
 }
@@ -116,3 +123,5 @@ input{
     border: 0px !important;
     border-bottom:  2px solid #4f1a58 !important;
 }
+
+/* detalhes */
