@@ -32,6 +32,12 @@
         <div class="card col-12" style="width: 30rem;">
             <div class="card-body">
                 <img src="/static/img/qr.png" width="50%" class="card-img justify-content-center" alt="Imagem de capa do card">
+                <div  style="color: black !important;" class="input-group mb-3 col-12">
+                    <div class="custom-file">
+                        <label class="custom-file-label" for="inputGroupFile01">Anexe o comprovante</label>
+                        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                    </div>
+                  </div>
             </div>
             <div style="color: rgb(0, 0, 0);" class="comprar col d-flex justify-content-center align-items-end">
                 <div style="font-size: 22px; text-align: center;" class="col-10">
@@ -56,12 +62,7 @@
                 </div>
             </div>
             {% endfor %}
-            <div  style="color: black !important;" class="input-group mb-3 col-12">
-                <div class="custom-file">
-                    <label class="custom-file-label" for="inputGroupFile01">Anexe o comprovante</label>
-                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                </div>
-              </div>
+            
         </div>
         
     </div>
